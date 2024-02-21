@@ -21,7 +21,6 @@ req = reqHdr.pack(key)
 s.sendto(req, addr)
 
 res, addr2 = s.recvfrom(1024)
-
 key2, valid, value = resHdr.unpack(res)
 
 assert key2 == key
