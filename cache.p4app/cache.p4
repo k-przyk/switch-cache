@@ -168,7 +168,7 @@ control MyIngress(inout headers hdr,
 
         hdr.response.setValid();
         hdr.response.key = hdr.request.key;
-        hdr.response.is_valid = 1;
+        hdr.response.is_valid = 0x1;
         hdr.response.value = value;
         hdr.request.setInvalid();
     }
@@ -229,7 +229,7 @@ control MyIngress(inout headers hdr,
         }
         // if response
         else if (hdr.response.isValid()) {
-            if (hdr.response.is_valid != 0) {
+            if (hdr.response.is_valid == 0x1) {
                 cache_key.write((bit<32>) hdr.response.key, (bit<32>) hdr.response.is_valid);
                 cache_value.write((bit<32>) hdr.response.key, hdr.response.value); 
             }
